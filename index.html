@@ -49,14 +49,48 @@
         }
     </script>
     <style>
+
+        html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.matrix-bg::before {
+    transform-origin: center;
+    overflow: hidden;
+}
+
+.container {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+#mobile-menu {
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+.hack-animation.w-64.h-64 {
+    max-width: 100%;
+    width: 256px;
+    height: 256px;
+}
         /* Scroll behavior */
         html {
             scroll-behavior: smooth;
+            overflow-x: hidden;
+    width: 100%;
         }
         
         /* Body padding to account for fixed nav */
         body {
             padding-top: 80px; /* Adjusted for nav height */
+            overflow-x: hidden;
+    width: 100%;
         }
         
         /* Matrix background */
@@ -352,7 +386,7 @@
                     </div>
                     <iframe 
     src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=2201159" 
-    style="border: none; width: 400px; height: 120px; transform: scale(1.1); transform-origin: top left;"
+    style="border: none; width: 100%; max-width: 400px; height: 120px;"
     scrolling="no" 
     class="rounded-lg shadow-lg">
 </iframe>
