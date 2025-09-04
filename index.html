@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+
+    <title>Shivam Gupta | Cybersecurity & AI/ML Enthusiast</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'terminal-green': '#4ade80',
+                        'terminal-blue': '#22d3ee',
+                        'cyber-dark': '#09090b',
+                        'hacker-purple': '#a855f7',
+                        'matrix-green': '#16a34a',
+                    },
+                    fontFamily: {
+                        'mono': ['Inconsolata', 'monospace'],
+                        'sans': ['Montserrat', 'sans-serif']
+                    },
+                    animation: {
+                        'terminal-cursor': 'blink 1s infinite',
+                        'hack-line': 'hack-line 6s infinite',
+                        'typewriter': 'typewriter 4s steps(29) forwards'
+                    },
+                    keyframes: {
+                        blink: {
+                            '0%, 100%': { opacity: 1 },
+                            '50%': { opacity: 0 },
+                        },
+                        'hack-line': {
+                            '0%': { height: '0', opacity: 1 },
+                            '5%': { height: '100%', opacity: 1 },
+                            '10%': { opacity: 0, height: '100%' },
+                            '11%': { opacity: 0, height: '0' },
+                            '100%': { opacity: 0, height: '0' }
+                        },
+                        typewriter: {
+                            '0%': { width: '0' },
+                            '100%': { width: '29ch' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+
+        html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.matrix-bg::before {
+    transform-origin: center;
+    overflow: hidden;
+}
+
+.container {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+#mobile-menu {
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+.hack-animation.w-64.h-64 {
+    max-width: 100%;
+    width: 256px;
+    height: 256px;
+}
+        /* Scroll behavior */
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+    width: 100%;
+        }
+        
+        /* Body padding to account for fixed nav */
+        body {
+            padding-top: 80px; /* Adjusted for nav height */
+            overflow-x: hidden;
+    width: 100%;
+        }
+        
+        /* Matrix background */
+        .matrix-bg {
+            position: relative;
+            background-color: #09090b;
+            /* Removed overflow: hidden to enable scrolling */
+        }
+        
+        .matrix-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%; /* Reduced from 200% for performance */
+            height: 100%; /* Reduced from 200% for performance */
+            background: 
+                linear-gradient(transparent 70%, rgba(22, 163, 74, 0.05) 70%),
+                linear-gradient(90deg, transparent 70%, rgba(22, 163, 74, 0.05) 70%);
+            background-size: 40px 40px; /* Smaller grid for performance */
+            transform: rotate(45deg);
+            opacity: 0.15;
+            pointer-events: none;
+        }
+        
+        /* Cyber card styling */
+        .cyber-card {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(74, 222, 128, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+        
+        .cyber-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(34, 211, 238, 0.2);
+            border-color: rgba(74, 222, 128, 0.5);
+        }
+        
+        .cyber-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #4ade80, #22d3ee);
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .cyber-card:hover::after {
+            transform: translateY(0);
+        }
+        
+        /* Terminal styling */
+        .code-block {
+            background-color: #1e293b;
+            border-left: 3px solid #4ade80;
+        }
+        
+        .terminal-input {
+            background-color: transparent;
+            color: #4ade80;
+            caret-color: #4ade80;
+            outline: none;
+            border: none;
+        }
+        
+        .terminal-input::before {
+            content: '>';
+            margin-right: 0.5rem;
+            color: #4ade80;
+        }
+        
+        /* Hacker line animation */
+        .hacker-line {
+            position: absolute;
+            width: 100%;
+            height: 0;
+            background: linear-gradient(transparent, rgba(168, 85, 247, 0.5), transparent);
+            animation: hack-line 6s infinite;
+            opacity: 0;
+        }
+        
+        .hacker-line:nth-child(1) { top: 10%; left: 0; animation-delay: 0s; }
+        .hacker-line:nth-child(2) { top: 30%; right: 0; animation-delay: 1.5s; }
+        .hacker-line:nth-child(3) { top: 50%; left: 0; animation-delay: 3s; }
+        .hacker-line:nth-child(4) { top: 70%; right: 0; animation-delay: 4.5s; }
+        
+        /* Skill bars */
+        .progress-bar {
+            height: 0.5rem;
+            background-color: #1e293b;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4ade80, #22d3ee);
+        }
+        
+        /* Skill badges */
+        .skill-badge {
+            background-color: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(74, 222, 128, 0.2);
+        }
+        
+        /* Timeline styling */
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            top: 24px;
+            left: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #4ade80;
+            border: 3px solid rgba(34, 211, 238, 0.3);
+        }
+        
+        .timeline-vertical:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 7px;
+            width: 2px;
+            background-color: rgba(34, 211, 238, 0.3);
+        }
+        
+        /* Animations */
+        .hack-animation {
+            background: linear-gradient(45deg, #4ade80, #22d3ee, #a855f7, #4ade80);
+            background-size: 400% 400%;
+            animation: hackEffect 8s ease infinite;
+        }
+        
+        @keyframes hackEffect {
+            0% { background-position: 0% 50% }
+            50% { background-position: 100% 50% }
+            100% { background-position: 0% 50% }
+        }
+        
+        .skill-bar-fill {
+            animation: fillBar 1.5s ease-out forwards;
+        }
+        
+        @keyframes fillBar {
+            from { width: 0; }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .terminal-responsive {
+                flex-direction: column;
+            }
+            
+            .terminal-section {
+                width: 100%;
+            }
+        }
+        
+        html, body {
+            overflow-x: hidden; /* Disable horizontal scrolling */
+        }
+    </style>
+</head>
+<body class="matrix-bg text-gray-200 font-sans bg-cyber-dark">
+    <!-- Navigation -->
+    <nav class="fixed w-full top-0 z-50 bg-cyber-dark/90 py-4 px-6 md:px-12 flex justify-between items-center backdrop-blur">
+        <div>
+            <a href="#" class="text-2xl font-bold font-mono">
+                <span class="text-terminal-green">shivam</span>
+                <span class="text-terminal-blue">@</span>
+                <span class="text-white">root</span>
+            </a>
+        </div>
+        <div class="hidden md:flex space-x-8">
+            <a href="#about" class="hover:text-terminal-green transition">About</a>
+            <a href="#skills" class="hover:text-terminal-green transition">Skills</a>
+            <a href="#education" class="hover:text-terminal-green transition">Education</a>
+           
+            <a href="#projects" class="hover:text-terminal-green transition">Projects</a>
+            <a href="#experience" class="hover:text-terminal-green transition">Experience</a>
+             <a href="https://taauxick.gitbook.io/writeups/" class="hover:text-terminal-green transition">Writeups</a>
+            <a href="#contact" class="hover:text-terminal-green transition">Contact</a>
+        </div>
+        <button id="menu-toggle" class="md:hidden text-terminal-green text-2xl" aria-label="Open menu">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden fixed inset-0 bg-cyber-dark z-40 hidden transition-all" aria-hidden="true">
+        <div class="flex justify-end p-6">
+            <button id="close-menu" class="text-terminal-green text-2xl" aria-label="Close menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="flex flex-col items-center space-y-8 mt-20">
+            <a href="#about" class="text-xl hover:text-terminal-green transition py-2">About</a>
+            <a href="#skills" class="text-xl hover:text-terminal-green transition py-2">Skills</a>
+            <a href="#education" class="text-xl hover:text-terminal-green transition py-2">Education</a>
+        
+            <a href="#projects" class="text-xl hover:text-terminal-green transition py-2">Projects</a>
+            <a href="#experience" class="text-xl hover:text-terminal-green transition py-2">Experience</a>
+            <a href="#writeups" class="text-xl hover:text-terminal-green transition py-2">Writeups</a>
+            <a href="#contact" class="text-xl hover:text-terminal-green transition py-2">Contact</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="relative min-h-screen flex flex-col justify-center">
+        <!-- Matrix rain effect container -->
+        <div id="matrix-rain" class="absolute inset-0 z-0"></div>
+        
+        <!-- Hacker line animations -->
+        <div class="hacker-line"></div>
+        <div class="hacker-line"></div>
+        <div class="hacker-line"></div>
+        <div class="hacker-line"></div>
+        
+        <div class="container mx-auto px-4 py-16 relative z-10">
+            <div class="max-w-7xl mx-auto">
+                <!-- Animated terminal typing effect -->
+                <div class="cyber-card p-8 mb-12 max-w-4xl">
+                    <div class="terminal-header flex items-center mb-4">
+                        <div class="flex space-x-2 mr-4">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        </div>
+                        <div class="text-xs font-mono text-gray-400">root@shivam:~</div>
+                    </div>
+                    <div class="terminal-content font-mono">
+    <p class="text-terminal-green">$ whoami</p>
+    <p class="text-terminal-blue mb-6">Shivam Gupta / Taauxick </p>
+
+    <p class="text-terminal-green">$ cat about.txt</p>
+    <p class="mb-2"><b>Role</b>: B.Tech 3rd Yr • AI/ML + Cybersecurity Enthusiast</p>
+    <p class="mb-2"><b>Expertise</b>: Offensive Security • Red Teaming • OSINT • AI Research</p>
+
+    <p class="mb-2"><b>Current Focus</b>:</p>
+    <ul class="list-disc pl-6 text-gray-300 mb-6">
+        <li>🔒 Red Teaming & Advanced Exploitation</li>
+        <li>🧠 AI-Driven Security Applications</li>
+        <li>🔍 OSINT & Threat Intelligence Automation</li>
+    </ul>
+
+    <p class="mb-2"><b>Current Achievements</b>:</p>
+    <ul class="list-disc pl-6 text-gray-300 mb-6">
+        <li>🌍 Ranked in the <b>Top 2%</b> globally on <b>TryHackMe</b></li>
+        <li>🏆 Solved numerous CTF challenges and gained hands-on experience in real-world scenarios</li>
+    </ul>
+
+    <p class="mb-6"><b>Status</b>: <span class="text-terminal-green">[ACTIVE]</span></p>
+    <p class="text-gray-300">
+        Aspiring Security Researcher | Passionate about ethical hacking, exploitation, and intelligent system design. Actively building skills via CTFs, labs, and self-driven projects.
+    </p>
+
+    <p class="text-terminal-green">$ ./init_portfolio.sh</p>
+    <p class="text-terminal-blue animate-pulse">Initializing interactive portfolio...</p>
+</div>
+
+                </div>
+                
+                <!-- Hero content -->
+                <div class="flex flex-wrap items-center justify-between gap-12 mt-12">
+                    <div class="max-w-lg">
+                        <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                            Cybersecurity & 
+                            <span class="text-terminal-green">AI/ML</span> 
+                            Enthusiast
+                        </h1>
+                        <p class="text-xl text-gray-300 mb-8">
+                            Building secure systems and developing intelligent solutions to defend against evolving threats in the digital landscape.
+                        </p>
+                        <div class="flex flex-wrap gap-4">
+                            <a href="#projects" class="cyber-button bg-terminal-green hover:bg-opacity-80 px-8 py-3 font-medium rounded-md transition">
+                                View My Work
+                            </a>
+                            <a href="#contact" class="cyber-button bg-terminal-blue hover:bg-opacity-80 px-8 py-3 font-medium rounded-md transition">
+                                Contact Me
+                            </a>
+                            <a href="shivam_cv.pdf" class="cyber-button bg-hacker-purple hover:bg-opacity-80 px-8 py-3 font-medium rounded-md transition" download>
+                                Download My CV
+                            </a>
+                        </div>
+                    </div>
+                    <iframe 
+    src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=2201159" 
+    style="border: none; width: 100%; max-width: 400px; height: 120px;"
+    scrolling="no" 
+    class="rounded-lg shadow-lg">
+</iframe>
+                    
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-6 md:px-12 bg-cyber-dark/90 backdrop-blur-sm">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex items-center justify-center gap-4 mb-16">
+                <div class="w-12 h-1 bg-terminal-green"></div>
+                <h2 class="text-3xl md:text-4xl font-bold text-center">
+                    About <span class="text-terminal-green">Me</span>
+                </h2>
+                <div class="w-12 h-1 bg-terminal-green"></div>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/3 flex justify-center">
+    <div class="relative">
+        <div class="hack-animation w-64 h-64 rounded-full flex items-center justify-center overflow-hidden">
+            <div class="bg-cyber-dark rounded-full p-1 w-full h-full">
+                <div class="bg-gray-200 border-2 border-dashed rounded-full w-full h-full flex items-center justify-center overflow-hidden">
+                    <img src="profile.jpg" alt="Profile Image" class="w-full h-full object-cover rounded-full">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                
+                <div class="lg:w-2/3">
+                    <div class="cyber-card p-8">
+                        <p class="text-lg text-gray-300 mb-6">
+Aspiring Security Researcher and AI/ML Developer with a strong foundation in Computer Science and hands-on experience
+in cybersecurity, ethical hacking, and digital forensics. Currently pursuing a B.Tech in Computer Science with a specialization
+in Artificial Intelligence and Machine Learning, alongside independent training in cybersecurity.
+                        </p>
+                        <p class="text-lg text-gray-300 mb-8">
+Skilled in offensive security, OSINT, red teaming, and penetration testing. Proficient with modern tools and techniques used
+in CTFs, bug bounty hunting, and malware analysis. Solved numerous Capture The Flag (CTF) challenges and ranked
+in the top 3% globally on TryHackMe. Actively applying theoretical knowledge through labs, simulations, and real-world
+cybersecurity challenges. Passionate about securing digital infrastructure by identifying and mitigating vulnerabilities with
+AI-powered defensive and offensive strategies.                        </p>
+                        
+                        <!-- Commented out the experience, audits, and certifications section -->
+<!--
+<div class="grid grid-cols-2 md:grid-cols-3 gap-6 mt-8">
+    <div class="cyber-card p-4 text-center">
+        <div class="text-4xl font-bold text-terminal-green mb-2">5+</div>
+        <div class="text-gray-300">Years Experience</div>
+    </div>
+    <div class="cyber-card p-4 text-center">
+        <div class="text-4xl font-bold text-terminal-green mb-2">100+</div>
+        <div class="text-gray-300">Security Audits</div>
+    </div>
+    <div class="cyber-card p-4 text-center">
+        <div class="text-4xl font-bold text-terminal-green mb-2">8</div>
+        <div class="text-gray-300">Certifications</div>
+    </div>
+</div>
+-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 px-6 md:px-12">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex items-center justify-center gap-4 mb-16">
+                <div class="w-12 h-1 bg-terminal-blue"></div>
+                <h2 class="text-3xl md:text-4xl font-bold text-center">
+                    Technical <span class="text-terminal-blue">Skills</span>
+                </h2>
+                <div class="w-12 h-1 bg-terminal-blue"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6 flex items-center">
+                        <i class="fas fa-shield-alt text-terminal-green mr-3"></i>
+                        Professional Skills
+                    </h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2">
+                        <li>VAPT</li>
+                        <li>OSINT</li>
+                        <li>OWASP Top 10</li>
+                        <li>Dark Web Research</li>
+                        <li>Forensics</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6 flex items-center">
+                        <i class="fas fa-code text-terminal-blue mr-3"></i>
+                        Programming Languages
+                    </h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2">
+                        <li>C</li>
+                        <li>Java</li>
+                        <li>Python</li>
+                        <li>HTML/CSS</li>
+                        <li>SQL</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6 flex items-center">
+                        <i class="fas fa-tools text-hacker-purple mr-3"></i>
+                        Tools and Frameworks
+                    </h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2">
+                        <li>Burp Suite</li>
+                        <li>Wireshark</li>
+                        <li>Nmap</li>
+                        <li>Metasploit</li>
+                        <li>SQLMap</li>
+                        <li>Nikto</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6 flex items-center">
+                        <i class="fas fa-desktop text-terminal-green mr-3"></i>
+                        Operating Systems
+                    </h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2">
+                        <li>Windows</li>
+                        <li>Linux</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="py-20 px-6 md:px-12 bg-cyber-dark/90 backdrop-blur-sm">
+    <div class="container mx-auto max-w-6xl">
+        <div class="flex items-center justify-center gap-4 mb-16">
+            <div class="w-12 h-1 bg-terminal-green"></div>
+            <h2 class="text-3xl md:text-4xl font-bold text-center">
+                <span class="text-terminal-green">Education</span>
+            </h2>
+            <div class="w-12 h-1 bg-terminal-green"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div>
+                <h3 class="text-2xl font-semibold mb-4">B.Tech in Computer Science and Engineering (AI/ML)</h3>
+                <p class="text-gray-300 mb-2">Inderprastha Engineering College</p>
+                <p class="text-gray-400 mb-4">2023–2027</p>
+                <p class="text-gray-300">◦ Coursework: Data Structures and Algorithms, Computer Organization, Operating Systems, Object-Oriented Programming, and Computer Networks.</p>
+            </div>
+
+            <div>
+                <h3 class="text-2xl font-semibold mb-4">Diploma in Cybersecurity</h3>
+                <p class="text-gray-300 mb-2">Global Institute of Cyber Security and Ethical Hacking</p>
+                <p class="text-gray-400 mb-4">2024–2025</p>
+            </div>
+
+            <div>
+                <h3 class="text-2xl font-semibold mb-4">Senior Secondary (Class XII) – CBSE</h3>
+                <p class="text-gray-300 mb-2">Rajkiya Sarvodaya Bal Vidyalaya, Delhi</p>
+                <p class="text-gray-400 mb-4">2022–2023</p>
+            </div>
+
+            <div>
+                <h3 class="text-2xl font-semibold mb-4">Secondary (Class X) – CBSE</h3>
+                <p class="text-gray-300 mb-2">Bhartiyam International School, Uttarakhand</p>
+                <p class="text-gray-400 mb-4">2020–2021</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-6 md:px-12">
+    <div class="container mx-auto max-w-6xl">
+        <div class="flex items-center justify-center gap-4 mb-16">
+            <div class="w-12 h-1 bg-terminal-green"></div>
+            <h2 class="text-3xl md:text-4xl font-bold text-center">
+                Featured <span class="text-terminal-green">Project</span>
+            </h2>
+            <div class="w-12 h-1 bg-terminal-green"></div>
+        </div>
+        
+        <div class="cyber-card p-8 rounded-xl shadow-md">
+            <div class="flex flex-col lg:flex-row items-center gap-8">
+                <!-- Project Image -->
+                <div class="lg:w-1/3">
+                    <img src="icon.png" alt="Ghost-Wall Project" class="rounded-lg shadow-lg">
+                </div>
+                
+                <!-- Project Details -->
+                <div class="lg:w-2/3">
+                    <h3 class="text-2xl font-bold mb-4">Ghost-Wall</h3>
+                    <p class="text-gray-300 mb-6">
+                        Ghost-Wall is a lightweight browser extension that prevents tracking scripts, cookies, and fingerprinting techniques from collecting user data. It enhances privacy by blocking third-party trackers in real-time while maintaining minimal impact on browser performance.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="text-xs text-terminal-green border border-terminal-green/30 px-3 py-1 rounded-full">JavaScript</span>
+                        <span class="text-xs text-terminal-blue border border-terminal-blue/30 px-3 py-1 rounded-full">Browser Extension</span>
+                        <span class="text-xs text-hacker-purple border border-hacker-purple/30 px-3 py-1 rounded-full">Privacy</span>
+                    </div>
+                    <a href="https://github.com/taauxick/ghost-wall" target="_blank" class="w-full block text-center cyber-button bg-terminal-green/10 text-terminal-green hover:bg-terminal-green/20 py-3 rounded-md transition">
+                        View Project Details
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 px-6 md:px-12 bg-cyber-dark/90 backdrop-blur-sm">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex items-center justify-center gap-4 mb-16">
+                <div class="w-12 h-1 bg-terminal-green"></div>
+                <h2 class="text-3xl md:text-4xl font-bold text-center">
+                    Work <span class="text-terminal-green">Experience</span>
+                </h2>
+                <div class="w-12 h-1 bg-terminal-green"></div>
+            </div>
+
+            <div class="grid grid-cols-1 gap-12">
+                <div class="cyber-card p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Cybersecurity Virtual Internship Participant</h3>
+                    <p class="text-terminal-green mb-4">Cisco Networking Academy (Remote)</p>
+                    <p class="text-gray-300 mb-4">
+                        ◦ Completed simulated cybersecurity projects focusing on incident response, network defense, and threat mitigation aligned with real-world SOC operations.<br>
+                        ◦ Gained practical exposure to tools and processes used in enterprise-grade environments through guided labs and assessments.<br>
+                        ◦ Developed foundational experience in CyberOps workflows, security operations center (SOC) monitoring, and security event analysis.
+                    </p>
+                    <p class="text-gray-400">May 2024 – July 2024</p>
+                </div>
+
+                <div class="cyber-card p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Cybersecurity Analyst Job Simulation</h3>
+                    <p class="text-terminal-green mb-4">Tata Group – Forage Virtual Experience (Remote)</p>
+                    <p class="text-gray-300 mb-4">
+                        ◦ Completed a job simulation covering tasks such as analyzing phishing emails, identifying exposed credentials, and reviewing incident reports.<br>
+                        ◦ Applied critical thinking to real-world security scenarios involving threat detection, risk assessment, and documentation.<br>
+                        ◦ Delivered structured recommendations to enhance organizational cyber resilience based on threat intelligence analysis.
+                    </p>
+                    <p class="text-gray-400">2025</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6 md:px-12">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex items-center justify-center gap-4 mb-16">
+                <div class="w-12 h-1 bg-terminal-green"></div>
+                <h2 class="text-3xl md:text-4xl font-bold text-center">
+                    Get In <span class="text-terminal-green">Touch</span>
+                </h2>
+                <div class="w-12 h-1 bg-terminal-green"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <div class="cyber-card p-8 h-full">
+                        <h3 class="text-2xl font-bold mb-6">
+                            Contact Information
+                        </h3>
+                        
+                        <div class="space-y-6 mb-8">
+                           
+
+
+
+                            <div class="flex items-start">
+                                <div class="hack-animation w-12 h-12 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-map-marker-alt text-cyber-dark"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="font-bold text-white">Location</h4>
+                                    <p>Delhi,India</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="hack-animation w-12 h-12 rounded-lg flex items-center justify-center">
+                                    <i class="fab fa-linkedin-in text-cyber-dark"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="font-bold text-white">LinkedIn</h4>
+                                     <a href="https://www.linkedin.com/in/shivamgupta931" target="_blank"><p>linkedin.com/in/taauxick</p></a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-10">
+                            
+                            <div class="flex space-x-4">
+                                <div class="cyber-card p-4 w-20 h-20 flex items-center justify-center">
+                                    <i class="fas fa-key text-xl"></i>
+                                </div>
+                                <div class="cyber-card p-4 w-20 h-20 flex items-center justify-center">
+                                    <i class="fas fa-fingerprint text-xl"></i>
+                                </div>
+                                <div class="cyber-card p-4 w-20 h-20 flex items-center justify-center">
+                                    <i class="fas fa-lock text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cyber-card p-8">
+                    <h3 class="text-2xl font-bold mb-6">
+                        Send a Message
+                    </h3>
+                    
+                    <!-- Contact Form -->
+<form id="contact-form" action="https://formspree.io/f/xkgbrzqo" method="POST">
+    <div class="grid grid-cols-1 gap-6 mb-6">
+        <div>
+            <label for="name" class="block text-gray-300 mb-2">Name</label>
+            <input type="text" id="name" name="name" class="w-full px-4 py-3 bg-cyber-dark rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-terminal-green" placeholder="Your Name" required>
+        </div>
+        <div>
+            <label for="email" class="block text-gray-300 mb-2">Email</label>
+            <input type="email" id="email" name="email" class="w-full px-4 py-3 bg-cyber-dark rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-terminal-green" placeholder="your@email.com" required>
+        </div>
+        <div>
+            <label for="subject" class="block text-gray-300 mb-2">Subject</label>
+            <input type="text" id="subject" name="subject" class="w-full px-4 py-3 bg-cyber-dark rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-terminal-green" placeholder="Message Subject" required>
+        </div>
+        <div>
+            <label for="message" class="block text-gray-300 mb-2">Message</label>
+            <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 bg-cyber-dark rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-terminal-green" placeholder="Your message..." required></textarea>
+        </div>
+    </div>
+    
+    <button type="submit" class="w-full cyber-button bg-terminal-green text-cyber-dark py-4 rounded-lg font-bold hover:bg-terminal-green/90 transition">
+        <i class="fas fa-paper-plane mr-2"></i>
+        Send  Message
+    </button>
+</form>
+
+<!-- Success Message -->
+<div id="success-message" class="hidden mt-6 p-4 bg-terminal-green/10 text-terminal-green rounded-lg">
+    Thank you for your message! I will get back to you soon.
+</div>
+
+<!-- Form Submission Script -->
+<script>
+    document.getElementById('contact-form').addEventListener('submit', (e) => {
+        e.preventDefault(); // Prevent default form submission
+        const form = e.target;
+        const successMessage = document.getElementById('success-message');
+
+        fetch(form.action, {
+            method: form.method,
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+        }).then(response => {
+            if (response.ok) {
+                successMessage.classList.remove('hidden'); // Show success message
+                form.reset(); // Clear the form
+            } else {
+                successMessage.textContent = 'Oops! Something went wrong. Please try again.';
+                successMessage.classList.remove('hidden'); // Show error message
+            }
+        }).catch(() => {
+            successMessage.textContent = 'Oops! Something went wrong. Please try again.';
+            successMessage.classList.remove('hidden'); // Show error message
+        });
+    });
+</script>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 border-t border-gray-800">
+    <div class="container mx-auto max-w-6xl">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+            <div class="flex items-center mb-6 md:mb-0">
+                <a href="#" class="text-2xl font-bold font-mono">
+                    <span class="text-terminal-green">shivam</span>
+                    <span class="text-terminal-blue">@</span>
+                    <span class="text-white">root</span>
+                </a>
+            </div>
+            
+            <div class="flex space-x-4">
+                <a href="https://github.com/taauxick" class="hack-animation w-12 h-12 rounded-full flex items-center justify-center hover:bg-terminal-green/10 transition">
+                    <i class="fab fa-github text-cyber-dark"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/shivamgupta931" class="hack-animation w-12 h-12 rounded-full flex items-center justify-center hover:bg-terminal-blue/10 transition">
+                    <i class="fab fa-linkedin-in text-cyber-dark"></i>
+                </a>
+                <a href="https://x.com/taauxick" class="hack-animation w-12 h-12 rounded-full flex items-center justify-center hover:bg-hacker-purple/10 transition">
+                    <span class="text-cyber-dark text-xl">X</span>
+                </a>
+            </div>
+        </div>
+        
+        <div class="border-t border-gray-800 pt-8 text-center text-gray-500">
+<!-- Contact Form Script -->
+
+
+    <script>
+        // Toggle mobile menu
+        const menuToggle = document.getElementById('menu-toggle');
+        const closeMenu = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Close menu when clicking on links
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            });
+        });
+        
+        // Close menu on outside click
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target === mobileMenu) {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Animate skill bars when in viewport
+        document.addEventListener('DOMContentLoaded', function() {
+            const skillBars = document.querySelectorAll('.skill-bar-fill');
+            
+            // Set initial width to 0
+            skillBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0';
+                bar.dataset.width = width;
+            });
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const bar = entry.target;
+                        bar.style.width = bar.dataset.width;
+                        observer.unobserve(bar);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            skillBars.forEach(bar => {
+                observer.observe(bar);
+            });
+        });
+        
+    
+       
+    </script>
+</body>
+</html>
